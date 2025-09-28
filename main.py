@@ -6,8 +6,12 @@ sentiment_analysis: SentimentAnalysis = SentimentAnalysis()
 
 text_path = "data/text.txt"
 
-with open(text_path, "r") as f:
-    text = f.read()
+try:
+    with open(text_path, "r") as f:
+        text = f.read()
+except FileNotFoundError as e:
+    print("Файл не найден. Проверьте путь")
+    raise e
 
 
 cleaned_text = text_cleaner.clean_text(text)
